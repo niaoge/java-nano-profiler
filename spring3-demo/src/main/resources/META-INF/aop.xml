@@ -1,0 +1,16 @@
+<!DOCTYPE aspectj PUBLIC
+    "-//AspectJ//DTD 1.5.0//EN"
+    "http://www.eclipse.org/aspectj/dtd/aspectj_1_5_0.dtd">
+
+<aspectj>
+  <!-- http://www.eclipse.org/aspectj/doc/released/devguide/ltw-configuration.html -->
+    <weaver options="-showWeaveInfo -Xset:weaveJavaxPackages=true">
+        <include within="com.niaoge..*" /> 
+    </weaver>
+
+    <aspects>
+        <aspect name="com.helpinput.profaop.AspectProfiler" />
+        <exclude within="org.slf4j.*" />
+        <exclude within="com.sun.*" />
+    </aspects>
+</aspectj>

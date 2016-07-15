@@ -51,7 +51,7 @@ public class ProcessExecutor {
         MethodProfiler mp1 = methodProfilerMap.get(methodList.get(0));
 
         long firstInvokeTimes = mp1.getTimers();
-        if (firstInvokeTimes == 1) {
+        if (ProfileProperties.doProcessFirst && firstInvokeTimes == 1) {
             doProcess = true;
         }
 

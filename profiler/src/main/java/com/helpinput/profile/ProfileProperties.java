@@ -32,10 +32,10 @@ import org.slf4j.LoggerFactory;
 public class ProfileProperties {
     final static Logger            logger                    = LoggerFactory.getLogger(ProfileProperties.class);
     public final static Properties DEFAULT_PROPERTIES        = new Properties();
-    private final static String    PROFILE_PROPERTIES_NAME   = "java-nano-profile.properties";
+    private final static String    PROFILE_PROPERTIES_NAME   = "java-nano-profiler.properties";
 
     private final static String    PROCESS_WHEN_INVOKE_TIMES = "process.when.invoke.times";
-    public static long             processTimers             = 4999;
+    public static long             processTimers             = 9999;
     public final static long       processTimersMin          = 10;
 
     private final static String    PROCESS_THEN_CLEAN        = "process.then.clear";
@@ -46,6 +46,9 @@ public class ProfileProperties {
 
     private final static String    PROCESS_TO_FILEPATH       = "process.to.filepath";
     public static String           profileFilePath           = null;
+    
+    private final static String    PROCESS_FIRST       = "process.first";
+    public static boolean           doProcessFirst           = true;
 
     static {
         try {
@@ -69,6 +72,7 @@ public class ProfileProperties {
             clearnAfterProcess = !("false".endsWith(getStringProperty(PROCESS_THEN_CLEAN)));
             processToFile = "true".equals(getStringProperty(PROCESS_TO_FILE));
             profileFilePath = getStringProperty(PROCESS_TO_FILEPATH);
+            doProcessFirst =!("false".equals(getStringProperty(PROCESS_FIRST)));
         }
     }
 

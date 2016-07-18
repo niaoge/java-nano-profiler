@@ -84,6 +84,8 @@ public class MethodProfiler {
             }
         } while (!atomic.compareAndSet(expect, update));
     }
+    
+
 
     public void calcProfiler(MethodTimer methodTimer, Map<Method, MethodProfiler> methodProfilerMap) {
         timers.incrementAndGet();

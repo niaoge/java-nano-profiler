@@ -74,7 +74,7 @@ public class ProcessExecutor {
         }
 
         if (executorService == null) {
-            executorService = Executors.newCachedThreadPool();
+            executorService = Executors.newFixedThreadPool(1000);
         }
         LogOrFileProcessor LogOrFileProcessor = new LogOrFileProcessor(methodList, methodProfilerMap);
 
@@ -148,7 +148,7 @@ public class ProcessExecutor {
             StringBuffer sb = new StringBuffer();
             sb.append('\n');
             sb.append("Begin of method execute Links,copy to excel manually=======================>\n");
-            sb.append("method\tinvokes \tduration(total ms)\tmax(ms)\tmin(ms)\tavg(ms)\tduration-self(ms)\tmax-self(ms)\tmin-self\tavg-self\t% of self\t% of total\n");
+            sb.append("method\tinvokes \tduration(total ms)\tmax(ms)\tmin(ms)\tavg(ms)\tduration-self(ms)\tmax-self(ms)\tmin-self\tavg-self\t% of total\tself % of total\n");
             DecimalFormat df = new DecimalFormat("#.00");
             long firstDuration = mp1.getDuration();
 
@@ -172,7 +172,7 @@ public class ProcessExecutor {
                 sb.append('\t').append(mp.getMaxSelf() / nanoToMs);
                 sb.append('\t').append(mp.getMinSelf() / nanoToMs);
                 sb.append('\t').append(mp.getDurationSelf() / mp.getTimers() / nanoToMs);
-                Double d = (double) Math.round(mp.getDurationSelf() * 10000 / mp.getDuration()) / 100.0;
+                Double d = (double) Math.round(mp.getDuration() * 10000 / firstDuration) / 100.0;
                 sb.append('\t').append(df.format(d));
                 d = (double) Math.round(mp.getDurationSelf() * 10000 / firstDuration) / 100.0;
                 sb.append('\t').append(df.format(d));

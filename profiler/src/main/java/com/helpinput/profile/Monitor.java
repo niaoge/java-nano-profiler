@@ -63,8 +63,10 @@ public class Monitor {
 
             Method method = rootMethodTimer.getMethod();
             MethodProfiler methodProfiler = methodProfilerMap.get(method);
-            methodProfiler.calcProfiler(rootMethodTimer, methodProfilerMap);
-            ProcessExecutor.processMethodProfilerMap(threadMethodLinkHolder.getMethodOrderList(), methodProfilerMap);
+            if (methodProfiler!=null){
+                methodProfiler.calcProfiler(rootMethodTimer, methodProfilerMap);
+                ProcessExecutor.processMethodProfilerMap(threadMethodLinkHolder.getMethodOrderList(), methodProfilerMap);
+            }
         }
     }
 
